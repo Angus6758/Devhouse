@@ -14,17 +14,28 @@ NC='\033[0m' # No Color
 #=========================#
 #  Discord Alert Function #
 #=========================#
+VERBOSE=false  # Set to true for debugging
+
 send_discord_alert() {
-  local message="$1"
-  local webhook_url="${DISCORD_WEBHOOK_URL}"
+    local message="$1"
+    local webhook_url="${DISCORD_WEBHOOK}"
 
-  curl -H "Content-Type: application/json" \
-       -X POST \
-       -d "{\"username\": \"SysAlertBot\", \"content\": \"$message\"}" \
-       "$webhook_url" >/dev/null 2>&1
+    # Clean the URL
+    webhook_url=$(echo "$webhook_url" | tr -d '"' | tr -d "'" | xargs)
+
+    if [ "$VERBOSE" = true ]; then
+        echo "DEBUG: Sending alert to Discord..."
+        curl -H "Content-Type: application/json" \
+             -X POST \
+             -d "{\"content\": \"$message\"}" \
+             "$webhook_url"
+    else
+        curl -s -H "Content-Type: application/json" \
+             -X POST \
+             -d "{\"content\": \"$message\"}" \
+             "$webhook_url" >/dev/null 2>&1
+    fi
 }
-
-
 # Log directory
 LOG_DIR="$HOME/system_monitor_logs"
 mkdir -p "$LOG_DIR"
