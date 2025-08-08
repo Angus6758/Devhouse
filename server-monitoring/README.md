@@ -34,3 +34,98 @@ This enhanced system monitoring script provides comprehensive insights into Linu
 git clone https://github.com/yourusername/system-monitor.git
 cd system-monitor
 ```
+2. Make the script executable:
+```bash
+chmod +x monitor.sh
+```
+3. Create configuration file:
+```bash
+cp .env.example .env
+```
+4. Edit the .env file with your settings:
+```bash
+nano .env
+```
+## Configuration
+Configure your settings in the .env file:
+```bash
+# Discord Webhook URL
+DISCORD_WEBHOOK="your_discord_webhook_url_here"
+
+# System Identification
+SERVICE_NAME="Production Server"
+HOSTNAME="server-hostname"
+
+# Alert Thresholds (percentage)
+CPU_THRESHOLD="80"
+MEM_THRESHOLD="85"
+DISK_THRESHOLD="90"
+SWAP_THRESHOLD="50"
+
+# Cron Job Schedule (every 5 minutes)
+CRON_INTERVAL="*/5 * * * *"
+```
+## Usage
+### Run Manually
+```bash
+./monitor.sh
+```
+### Schedule with Cron
+1. Open crontab:
+```bash
+crontab -e
+```
+2. Add the following line (adjust path as needed):
+```bash
+*/5 * * * * /path/to/system-monitor/monitor.sh
+```
+### Sample Output
+```bash
+Enhanced System Monitoring Report - Fri Aug  8 08:50:50 UTC 2025
+-------------------------------------------
+
+===== System Information =====
+Hostname: server-hostname
+Uptime: up 23 minutes
+Operating System: Ubuntu 24.04.2 LTS
+Environment: Virtual Machine
+
+===== Resource Usage =====
+CPU Usage: 4.8% | Memory: 42.84% | Disk: 26%
+
+===== Threshold Checks & Alerts =====
+Memory threshold breached! 42.84% > 1%
+Disk threshold breached! 26% > 1%
+```
+## Customization
+
+### Adjust Thresholds
+Modify the values in .env to match your alerting needs:
+```bash
+CPU_THRESHOLD="80"
+MEM_THRESHOLD="85"
+DISK_THRESHOLD="90"
+```
+### Add Temperature Monitoring
+For physical servers:
+```bash
+sudo apt install lm-sensors
+sudo sensors-detect
+```
+### Enable Detailed Logging
+Uncomment these lines in the script:
+```bash
+# To enable debug output:
+# VERBOSE=true
+
+# To log curl responses:
+# curl ... >> /path/to/curl.log 2>&1
+```
+## Troubleshooting
+
+### Discord alerts not working?
+1. Verify webhook URL in .env
+2. Test webhook with curl:
+```bash
+curl -H "Content-Type: application/json" -X POST -d '{"content":"Test"}' YOUR_WEBHOOK_URL
+```
