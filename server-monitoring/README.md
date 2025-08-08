@@ -129,3 +129,23 @@ Uncomment these lines in the script:
 ```bash
 curl -H "Content-Type: application/json" -X POST -d '{"content":"Test"}' YOUR_WEBHOOK_URL
 ```
+3. Check script permissions: chmod +x monitor.sh
+
+### No temperature data?
+- Physical servers: Install lm-sensors
+- Virtual machines: Temperature monitoring not available
+
+### Cron job issues?
+- Use absolute paths in cron
+- Check system mail for cron errors
+- Verify environment variables in cron
+
+## Contributing
+Contributions are welcome! Please open an issue or submit a pull request:
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Open a pull request
+
+"An ounce of monitoring is worth a pound of troubleshooting." - System Admin Proverb
