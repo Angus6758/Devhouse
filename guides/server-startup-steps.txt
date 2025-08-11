@@ -1,4 +1,4 @@
-Following are the 8 Steps Which should be done while running a server.
+Following are the 10 Steps Which should be done while running a server.
 
 1. Root login must be closed.
 2. There must be 2 users for a service.(1 for backup)
@@ -9,3 +9,5 @@ Following are the 8 Steps Which should be done while running a server.
 6. Enable VNC for remote access.
 7. Enable CSF Firewall.
 8. Enable ModSecurity on the WebServer.
+9. Enable Fail2Ban.
+10. Use Auditd
