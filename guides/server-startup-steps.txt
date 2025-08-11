@@ -1,0 +1,11 @@
+Following are the 8 Steps Which should be done while running a server.
+
+1. Root login must be closed.
+2. There must be 2 users for a service.(1 for backup)
+3. Secure the IP ip of your server.
+3. Change the ssh port from 22 to any other avaliable port.
+4. Use SSH instead of Passwords.
+5. Use a monitoring tool.
+6. Enable VNC for remote access.
+7. Enable CSF Firewall.
+8. Enable ModSecurity on the WebServer.
