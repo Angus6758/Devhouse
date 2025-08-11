@@ -14,7 +14,7 @@ apt-get update
 apt-get install -y bison build-essential ca-certificates curl dh-autoreconf doxygen \
   flex gawk git iputils-ping libcurl4-gnutls-dev libexpat1-dev libgeoip-dev liblmdb-dev \
   libpcre3-dev libssl-dev libtool libxml2 libxml2-dev libyajl-dev locales \
-  lua5.3-dev pkg-config wget zlib1g-dev libgd-dev libpcre2-dev libperl-dev
+  lua5.3-dev pkg-config wget zlib1g-dev libgd-dev libpcre2-dev libperl-dev libxslt1-dev
 
 # Clone and build ModSecurity
 cd /opt
@@ -40,7 +40,8 @@ tar -xvzf nginx-${NGINX_VERSION}.tar.gz
 # Build dynamic module
 cd nginx-${NGINX_VERSION}
 NGINX_CONFIG_ARGS=$(nginx -V 2>&1 | grep "configure arguments" | sed 's/.*configure arguments://')
-./configure --add-dynamic-module=../ModSecurity-nginx $NGINX_CONFIG_ARGS
+eval set -- $NGINX_CONFIG_ARGS --add-dynamic-module=../ModSecurity-nginx
+./configure "$@"
 make modules
 
 # Install module
