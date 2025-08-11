@@ -82,10 +82,10 @@ If working correctly, Nginx should return:
 ---
 
 ⚠️ Notes & Warnings
-Always test ModSecurity in DetectionOnly mode before switching to On in production.
-Some rules may cause false positives and block legitimate requests.
-You can disable specific rules by editing the CRS configuration.
-Compiling modules for Nginx requires the exact version of Nginx source code.
+- Always test ModSecurity in DetectionOnly mode before switching to On in production.
+- Some rules may cause false positives and block legitimate requests.
+- You can disable specific rules by editing the CRS configuration.
+- Compiling modules for Nginx requires the exact version of Nginx source code.
 ---
 
 📜 License
