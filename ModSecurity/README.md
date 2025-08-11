@@ -40,11 +40,11 @@ If you want to install ModSecurity quickly, you can run the provided script.
 git clone https://github.com/your-repo/modsecurity-nginx-setup.git
 cd modsecurity-nginx-setup
 ```
-**2. Make the script executable:
+**2. Make the script executable:**
 ```bash
 chmod +x modsecurity.sh
 ```
-**3. Run the script as root (or with sudo):
+**3. Run the script as root (or with sudo):**
 ```bash
 sudo ./modsecurity.sh
 ```
@@ -58,3 +58,39 @@ The script will:
 
 ---
 
+📖 Manual Installation
+If you prefer to understand each step and customize the installation, follow:
+```bash
+cat manual.md
+```
+This guide explains every command and lets you configure ModSecurity manually.
+---
+🛠 Configuration Files
+- Main ModSecurity config: /etc/nginx/modsec/modsecurity.conf
+- Unicode mapping file: /etc/nginx/modsec/unicode.mapping
+- Custom rules file: /etc/nginx/modsec/main.conf
+- OWASP CRS: /usr/local/modsecurity-crs
+---
+🔍 Testing the WAF
+Once installed, you can test ModSecurity by sending a malicious request:
+```bash
+curl http://<SERVER-IP>/index.html?exec=/bin/bash
+```
+If working correctly, Nginx should return:
+
+**403 Forbidden**
+---
+
+⚠️ Notes & Warnings
+Always test ModSecurity in DetectionOnly mode before switching to On in production.
+Some rules may cause false positives and block legitimate requests.
+You can disable specific rules by editing the CRS configuration.
+Compiling modules for Nginx requires the exact version of Nginx source code.
+---
+
+📜 License
+ModSecurity is released under the Apache License 2.0.
+OWASP CRS is released under the Apache License 2.0.
+---
+
+**"A locked door is better than a burglar alarm."**
