@@ -20,8 +20,7 @@ apt-get install -y bison build-essential ca-certificates curl dh-autoreconf doxy
 cd /opt
 [ -d "ModSecurity" ] || git clone https://github.com/SpiderLabs/ModSecurity
 cd ModSecurity
-git submodule init
-git submodule update
+git submodule update --init --recursive
 ./build.sh
 ./configure
 make
